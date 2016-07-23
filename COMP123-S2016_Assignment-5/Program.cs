@@ -5,19 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+/**
+ * Assignment #5
+ * Author : Aslan Mirsakiyev
+ * Student ID : 300850326
+ * Date : 07.22.2016
+ * Submitted to : Tom Tsiliopoulos
+ * GitHub link : https://github.com/mirsakiyev/COMP123-S2016_Assignment-5
+ *
+ */
 namespace COMP123_S2016_Assignment_5
 {
+    /**
+    * This class is the driver class for our Program
+    * 
+    * @class Program
+    */
     class Program
     {
+        /**
+         * The main method for our driver class Program
+         *
+         * @method Main
+         * @param {string[]} args
+         */
         static void Main(string[] args)
         {
             Console.WriteLine("1) Display Grades  (Type '1', enter)");
             Console.WriteLine("2) Exit            (Type '2', enter)");
 
-            int userInput=int.Parse(Console.ReadLine());           
+            int userInput = int.Parse(Console.ReadLine());
             Console.WriteLine(userInput);
             Console.Clear();
-            if (userInput==1)
+            if (userInput == 1)
             {
                 Console.Clear();
                 try
@@ -26,6 +46,7 @@ namespace COMP123_S2016_Assignment_5
 
                     const string FILENAME = "..\\..\\StudentData.txt";
                     const char DELIM = ',';
+                    //const char DELIM_1 = ':';
 
                     // opening filestream
                     FileStream inFile = new FileStream(FILENAME, FileMode.Open, FileAccess.Read);
@@ -42,17 +63,18 @@ namespace COMP123_S2016_Assignment_5
                     {
                         Student student = new Student();
                         fields = recordString.Split(DELIM);
-                        student.FirstName = fields[0];
-                        student.LastName = fields[1];
+                        student.LastName = fields[0];
+                        student.FirstName = fields[1];
                         student.ID = fields[2];
                         student.Grade = fields[3];
                         students.Add(student);
 
-                        Console.WriteLine("{0} {1} {2} {3}",
+                        Console.WriteLine("{0} , {1} : {2} , {3}",
                             student.LastName,
-                            student.FirstName,                          
+                            student.FirstName,
                             student.ID,
                             student.Grade);
+
 
                         recordString = reader.ReadLine();
                     }
@@ -69,9 +91,9 @@ namespace COMP123_S2016_Assignment_5
                 Console.WriteLine();
             }
             else
-            {             
-                Environment.Exit(0);               
-            }          
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }
